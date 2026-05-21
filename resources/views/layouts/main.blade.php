@@ -19,7 +19,7 @@
     <!--=== main css ===-->
     <link rel="stylesheet" href="{{ asset('css/tailwind.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}" />
-    <title>El Rincon de Isma </title>
+    <title>Asroc - Portfolio </title>
 
     <script>
         // On page load or when changing themes, best to add inline in `head` to avoid FOUC
@@ -103,11 +103,11 @@
                 <div
                     class="w-full mb-6 lg:mb-0 mx-auto relative bg-white text-center dark:bg-[#111111] px-6 rounded-[20px] mt-[180px] md:mt-[220px] lg:mt-0">
                     <!-- profile image -->
-                    <img src="{{asset('images/LOGO.jpg')}}"
+                    <img src="{{asset('images/LOGO.png')}}"
                         class="w-[240px] absolute left-[50%] transform -translate-x-[50%] h-[240px] drop-shadow-xl mx-auto rounded-[20px] -mt-[140px]"
                         alt="about" />
                     <div class="pt-[100px] pb-8">
-                        <h2 class="mt-6 mb-1 text-[26px] font-semibold dark:text-white"> Ismael Catalá </h2>
+                        <h2 class="mt-6 mb-1 text-[26px] font-semibold dark:text-white"> Oscar Romero </h2>
                         <h3
                             class="mb-4 text-[#7B7B7B] inline-block dark:bg-[#1D1D1D] px-5 py-1.5 rounded-lg dark:text-[#A6A6A6]">
                             Software developer </h3>
@@ -145,7 +145,7 @@
                                 </span>
                                 <div class="text-left ml-2.5">
                                     <p class="text-xs text-[#44566C] dark:text-[#A6A6A6]"> Teléfono </p>
-                                    <p class="dark:text-white">+123 456 7890</p>
+                                    <p class="dark:text-white">+503 7262 7854</p>
                                 </div>
                             </div>
                             <div class="flex border-b border-[#E3E3E3] dark:border-[#3D3A3A] py-2.5">
@@ -163,7 +163,7 @@
                                 </span>
                                 <div class="text-left ml-2.5">
                                     <p class="text-xs text-[#44566C] dark:text-[#A6A6A6]"> Dirección </p>
-                                    <p class="dark:text-white">Madrid, España</p>
+                                    <p class="dark:text-white">San Salvador, El Salvador</p>
                                 </div>
                             </div>
                             <div class="flex py-2.5">
@@ -172,7 +172,7 @@
                                 </span>
                                 <div class="text-left ml-2.5">
                                     <p class="text-xs text-[#44566C] dark:text-[#A6A6A6]"> Año de nacimiento </p>
-                                    <p class="dark:text-white">24 Sept, 1987</p>
+                                    <p class="dark:text-white">26 Dic, 1996</p>
                                 </div>
                             </div>
                         </div>

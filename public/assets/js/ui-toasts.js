@@ -1,1 +1,213 @@
-"use strict";!function(){const t=document.querySelector(".toast-ex"),e=document.querySelector(".toast-ex .toast-header"),o=document.querySelector(".toast-placement-ex"),s=document.querySelector(".toast-placement-ex .toast-header"),a=document.querySelector("#showToastAnimation"),n=document.querySelector("#showToastPlacement");let i,l,r,c,p;function u(a){a&&null!==a._element&&(o&&(s.classList.remove(i),DOMTokenList.prototype.remove.apply(o.classList,r)),t&&(t.classList.remove(l),e.classList.remove(i)),a.dispose())}a&&(a.onclick=function(){c&&u(c),i=document.querySelector("#selectType").value,l=document.querySelector("#selectAnimation").value,t.classList.add(l),e.classList.add(i),c=new bootstrap.Toast(t),c.show()}),n&&(n.onclick=function(){p&&u(p),i=document.querySelector("#selectTypeOpt").value,r=document.querySelector("#selectPlacement").value.split(" "),s.classList.add(i),DOMTokenList.prototype.add.apply(o.classList,r),p=new bootstrap.Toast(o),p.show()})}(),$((function(){var t,e=-1,o=0;$("#closeButton").click((function(){$(this).is(":checked")?$("#addBehaviorOnToastCloseClick").prop("disabled",!1):($("#addBehaviorOnToastCloseClick").prop("disabled",!0),$("#addBehaviorOnToastCloseClick").prop("checked",!1))})),$("#showtoast").click((function(){var s,a,n=$("#toastTypeGroup input:radio:checked").val(),i="rtl"===$("html").attr("dir"),l=$("#message").val(),r=$("#title").val()||"",c=$("#showDuration"),p=$("#hideDuration"),u=$("#timeOut"),d=$("#extendedTimeOut"),h=$("#showEasing"),m=$("#hideEasing"),v=$("#showMethod"),k=$("#hideMethod"),b=o++,f=$("#addClear").prop("checked");s=void 0===toastr.options.positionClass?"toast-top-right":toastr.options.positionClass,toastr.options={maxOpened:1,autoDismiss:!0,closeButton:$("#closeButton").prop("checked"),debug:$("#debugInfo").prop("checked"),newestOnTop:$("#newestOnTop").prop("checked"),progressBar:$("#progressBar").prop("checked"),positionClass:$("#positionGroup input:radio:checked").val()||"toast-top-right",preventDuplicates:$("#preventDuplicates").prop("checked"),onclick:null,rtl:i},s!=toastr.options.positionClass&&(toastr.options.hideDuration=0,toastr.clear()),$("#addBehaviorOnToastClick").prop("checked")&&(toastr.options.onclick=function(){alert("You can perform some custom action after a toast goes away")}),$("#addBehaviorOnToastCloseClick").prop("checked")&&(toastr.options.onCloseClick=function(){alert("You can perform some custom action when the close button is clicked")}),c.val().length&&(toastr.options.showDuration=parseInt(c.val())),p.val().length&&(toastr.options.hideDuration=parseInt(p.val())),u.val().length&&(toastr.options.timeOut=f?0:parseInt(u.val())),d.val().length&&(toastr.options.extendedTimeOut=f?0:parseInt(d.val())),h.val().length&&(toastr.options.showEasing=h.val()),m.val().length&&(toastr.options.hideEasing=m.val()),v.val().length&&(toastr.options.showMethod=v.val()),k.val().length&&(toastr.options.hideMethod=k.val()),f&&(l=function(t){return t=t||"Clear itself?",t+'<br /><br /><button type="button" class="btn btn-sm btn-success clear">Yes</button>'}(l),toastr.options.tapToDismiss=!1),l||(++e===(a=["Don't be pushed around by the fears in your mind. Be led by the dreams in your heart.",'<div class="mb-3"><input class="input-small form-control mb-1" value="Textbox"/>&nbsp;<a href="http://johnpapa.net" target="_blank">This is a hyperlink</a></div><div class="d-flex"><button type="button" id="okBtn" class="btn btn-danger btn-sm me-2">Close me</button><button type="button" id="surpriseBtn" class="btn btn-sm btn-success">Surprise me</button></div>',"Live the Life of Your Dreams","Believe in Your Self!","Be mindful. Be grateful. Be positive.","Accept yourself, love yourself!"]).length&&(e=0),l=a[e]);var g=toastr[n](l,r);t=g,void 0!==g&&(g.find("#okBtn").length&&g.delegate("#okBtn","click",(function(){alert("you clicked me. i was toast #"+b+". goodbye!"),g.remove()})),g.find("#surpriseBtn").length&&g.delegate("#surpriseBtn","click",(function(){alert("Surprise! you clicked me. i was toast #"+b+". You could perform an action here.")})),g.find(".clear").length&&g.delegate(".clear","click",(function(){toastr.clear(g,{force:!0})})))})),$("#clearlasttoast").click((function(){toastr.clear(t)})),$("#cleartoasts").click((function(){toastr.clear()}))}));
+/**
+ * UI Toasts
+ */
+
+'use strict';
+
+(function () {
+  // Bootstrap toasts example
+  // --------------------------------------------------------------------
+  const toastAnimationExample = document.querySelector('.toast-ex'),
+    toastAnimationHeaderExample = document.querySelector('.toast-ex .toast-header'),
+    toastPlacementExample = document.querySelector('.toast-placement-ex'),
+    toastPlacementHeaderExample = document.querySelector('.toast-placement-ex .toast-header'),
+    toastAnimationBtn = document.querySelector('#showToastAnimation'),
+    toastPlacementBtn = document.querySelector('#showToastPlacement');
+  let selectedType, selectedAnimation, selectedPlacement, toast, toastAnimation, toastPlacement;
+
+  // Animation Button click
+  if (toastAnimationBtn) {
+    toastAnimationBtn.onclick = function () {
+      if (toastAnimation) {
+        toastDispose(toastAnimation);
+      }
+      selectedType = document.querySelector('#selectType').value;
+      selectedAnimation = document.querySelector('#selectAnimation').value;
+
+      toastAnimationExample.classList.add(selectedAnimation);
+      toastAnimationHeaderExample.classList.add(selectedType);
+      toastAnimation = new bootstrap.Toast(toastAnimationExample);
+      toastAnimation.show();
+    };
+  }
+
+  // Dispose toast when open another
+  function toastDispose(toast) {
+    if (toast && toast._element !== null) {
+      if (toastPlacementExample) {
+        toastPlacementHeaderExample.classList.remove(selectedType);
+        DOMTokenList.prototype.remove.apply(toastPlacementExample.classList, selectedPlacement);
+      }
+      if (toastAnimationExample) {
+        toastAnimationExample.classList.remove(selectedAnimation);
+        toastAnimationHeaderExample.classList.remove(selectedType);
+      }
+      toast.dispose();
+    }
+  }
+  // Placement Button click
+  if (toastPlacementBtn) {
+    toastPlacementBtn.onclick = function () {
+      if (toastPlacement) {
+        toastDispose(toastPlacement);
+      }
+      selectedType = document.querySelector('#selectTypeOpt').value;
+      selectedPlacement = document.querySelector('#selectPlacement').value.split(' ');
+
+      toastPlacementHeaderExample.classList.add(selectedType);
+      DOMTokenList.prototype.add.apply(toastPlacementExample.classList, selectedPlacement);
+      toastPlacement = new bootstrap.Toast(toastPlacementExample);
+      toastPlacement.show();
+    };
+  }
+})();
+
+//Toastr (jquery)
+// --------------------------------------------------------------------
+$(function () {
+  var i = -1;
+  var toastCount = 0;
+  var $toastlast;
+  var getMessage = function () {
+    var msgs = [
+      "Don't be pushed around by the fears in your mind. Be led by the dreams in your heart.",
+      '<div class="mb-3"><input class="input-small form-control mb-1" value="Textbox"/>&nbsp;<a href="http://johnpapa.net" target="_blank">This is a hyperlink</a></div><div class="d-flex"><button type="button" id="okBtn" class="btn btn-danger btn-sm me-2">Close me</button><button type="button" id="surpriseBtn" class="btn btn-sm btn-success">Surprise me</button></div>',
+      'Live the Life of Your Dreams',
+      'Believe in Your Self!',
+      'Be mindful. Be grateful. Be positive.',
+      'Accept yourself, love yourself!'
+    ];
+    i++;
+    if (i === msgs.length) {
+      i = 0;
+    }
+    return msgs[i];
+  };
+  var getMessageWithClearButton = function (msg) {
+    msg = msg ? msg : 'Clear itself?';
+    msg += '<br /><br /><button type="button" class="btn btn-sm btn-success clear">Yes</button>';
+    return msg;
+  };
+  $('#closeButton').click(function () {
+    if ($(this).is(':checked')) {
+      $('#addBehaviorOnToastCloseClick').prop('disabled', false);
+    } else {
+      $('#addBehaviorOnToastCloseClick').prop('disabled', true);
+      $('#addBehaviorOnToastCloseClick').prop('checked', false);
+    }
+  });
+  $('#showtoast').click(function () {
+    var shortCutFunction = $('#toastTypeGroup input:radio:checked').val(),
+      isRtl = $('html').attr('dir') === 'rtl',
+      msg = $('#message').val(),
+      title = $('#title').val() || '',
+      $showDuration = $('#showDuration'),
+      $hideDuration = $('#hideDuration'),
+      $timeOut = $('#timeOut'),
+      $extendedTimeOut = $('#extendedTimeOut'),
+      $showEasing = $('#showEasing'),
+      $hideEasing = $('#hideEasing'),
+      $showMethod = $('#showMethod'),
+      $hideMethod = $('#hideMethod'),
+      toastIndex = toastCount++,
+      addClear = $('#addClear').prop('checked'),
+      prePositionClass = 'toast-top-right';
+
+    prePositionClass =
+      typeof toastr.options.positionClass === 'undefined' ? 'toast-top-right' : toastr.options.positionClass;
+
+    toastr.options = {
+      maxOpened: 1,
+      autoDismiss: true,
+      closeButton: $('#closeButton').prop('checked'),
+      debug: $('#debugInfo').prop('checked'),
+      newestOnTop: $('#newestOnTop').prop('checked'),
+      progressBar: $('#progressBar').prop('checked'),
+      positionClass: $('#positionGroup input:radio:checked').val() || 'toast-top-right',
+      preventDuplicates: $('#preventDuplicates').prop('checked'),
+      onclick: null,
+      rtl: isRtl
+    };
+
+    //Add fix for multiple toast open while changing the position
+    if (prePositionClass != toastr.options.positionClass) {
+      toastr.options.hideDuration = 0;
+      toastr.clear();
+    }
+
+    if ($('#addBehaviorOnToastClick').prop('checked')) {
+      toastr.options.onclick = function () {
+        alert('You can perform some custom action after a toast goes away');
+      };
+    }
+    if ($('#addBehaviorOnToastCloseClick').prop('checked')) {
+      toastr.options.onCloseClick = function () {
+        alert('You can perform some custom action when the close button is clicked');
+      };
+    }
+    if ($showDuration.val().length) {
+      toastr.options.showDuration = parseInt($showDuration.val());
+    }
+    if ($hideDuration.val().length) {
+      toastr.options.hideDuration = parseInt($hideDuration.val());
+    }
+    if ($timeOut.val().length) {
+      toastr.options.timeOut = addClear ? 0 : parseInt($timeOut.val());
+    }
+    if ($extendedTimeOut.val().length) {
+      toastr.options.extendedTimeOut = addClear ? 0 : parseInt($extendedTimeOut.val());
+    }
+    if ($showEasing.val().length) {
+      toastr.options.showEasing = $showEasing.val();
+    }
+    if ($hideEasing.val().length) {
+      toastr.options.hideEasing = $hideEasing.val();
+    }
+    if ($showMethod.val().length) {
+      toastr.options.showMethod = $showMethod.val();
+    }
+    if ($hideMethod.val().length) {
+      toastr.options.hideMethod = $hideMethod.val();
+    }
+    if (addClear) {
+      msg = getMessageWithClearButton(msg);
+      toastr.options.tapToDismiss = false;
+    }
+    if (!msg) {
+      msg = getMessage();
+    }
+    var $toast = toastr[shortCutFunction](msg, title); // Wire up an event handler to a button in the toast, if it exists
+    $toastlast = $toast;
+    if (typeof $toast === 'undefined') {
+      return;
+    }
+    if ($toast.find('#okBtn').length) {
+      $toast.delegate('#okBtn', 'click', function () {
+        alert('you clicked me. i was toast #' + toastIndex + '. goodbye!');
+        $toast.remove();
+      });
+    }
+    if ($toast.find('#surpriseBtn').length) {
+      $toast.delegate('#surpriseBtn', 'click', function () {
+        alert('Surprise! you clicked me. i was toast #' + toastIndex + '. You could perform an action here.');
+      });
+    }
+    if ($toast.find('.clear').length) {
+      $toast.delegate('.clear', 'click', function () {
+        toastr.clear($toast, {
+          force: true
+        });
+      });
+    }
+  });
+
+  function getLastToast() {
+    return $toastlast;
+  }
+  $('#clearlasttoast').click(function () {
+    toastr.clear(getLastToast());
+  });
+  $('#cleartoasts').click(function () {
+    toastr.clear();
+  });
+});

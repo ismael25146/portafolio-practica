@@ -227,10 +227,10 @@
 
             <!-- footer start -->
             <footer class="overflow-hidden rounded-b-2xl" style="background: transparent">
-                <p class="text-center py-6 text-gray-lite dark:text-color-910"> © 2023 Todos los derechos reservados
+                <p class="text-center py-6 text-gray-lite dark:text-color-910"> © 2026 Todos los derechos reservados
                     by <a class="hover:text-[#FA5252] duration-300 transition"
-                        href="me.elrincondeisma.com" target="_blank"
-                        rel="noopener noreferrer"> El Rincón de Isma</a>. </p>
+                        href="#" target="_blank"
+                        rel="noopener noreferrer"> Oscar Romero - Killua</a>. </p>
             </footer>
             <!-- footer section end -->
         </div>
